@@ -1,0 +1,47 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(http-equiv='X-UA-Compatible', content='ie=edge')
+    title Distance Matrix
+    script(src='https://api.mqcdn.com/sdk/place-search-js/v1.0.0/place-search.js')
+    link(type='text/css', rel='stylesheet', href='https://api.mqcdn.com/sdk/place-search-js/v1.0.0/place-search.css')
+    link(href='https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Condensed|Ubuntu+Mono', rel='stylesheet')
+    style.
+      html,body{
+      font-family:'Ubuntu', sans-serif;
+      }
+    script(type='text/javascript').
+      window.onload = function() {
+      placeSearch({
+      key: "XyaTfOnGJEvxGmkVVjqVLzsC0wQhSTlW",
+      container: document.querySelector("#place-dest-input"),
+      useDeviceLocation: true,
+      collection: ["poi", "airport", "address", "adminArea"]
+      });
+      placeSearch({
+      key: "XyaTfOnGJEvxGmkVVjqVLzsC0wQhSTlW",
+      container: document.querySelector("#place-source-input"),
+      useDeviceLocation: true,
+      collection: ["poi", "airport", "address", "adminArea"]
+      });
+      };
+  body
+    div(style='display: flex; flex-direction: row; height: 100vh; ;')
+      div(style='width: 25%; height: 100%; background-color:white;')
+        div(style='background-color:#97bcf9; ')
+          form(action='/', method='post')
+            input#place-source-input(type='search', placeholder='Enter your source', name='source', style='height: 80px;margin-bottom: 5px;margin-top: 5px ; border-style:none; border-bottom: 1px solid white; background-color:transparent; color:white')
+            input#place-dest-input(type='search', placeholder='Enter your destination', name='destination', style='height: 80px;margin-bottom: 5px ; border-style:none; border-bottom: 1px solid white; background-color:transparent; color:white')
+            input(style='width: 100%; height: 80px; margin-bottom: 5px; background-color: #3367D6;border-style:none; color: white;', type='submit', value='Find')
+        div(style='height:70%; background-color: white;text-align:center')
+          br
+          p(style='font-size:25px, margin-top: 25px') #{distance}
+          br
+          br
+          p(style='font-size:25px, margin-top: 25px') #{realTime}
+          br
+          h1(style='margin-top: 55px') *US only*
+      div(style='width: 75%; height: 100%; border: 1px solid black;')
+        img(src='https://www.mapquestapi.com/staticmap/v5/map?start=#{sourceName}&end=#{destName}&size=600,400@2x&key=XyaTfOnGJEvxGmkVVjqVLzsC0wQhSTlW', style='width: 100%; height: 100%;')
